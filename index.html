@@ -3,19 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AuditInfra - Infrastructure Audit Automation</title>
+  <title>InfraAudit - Infrastructure Audit Automation</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
-      --primary: #007BFF; /* Deep Blue */
-      --accent: #004080; /* Dark Teal */
-      --background: #f5f5f5; /* Light Gray */
-      --text-dark: #333333;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
+      --primary: #00f5d4;
+      --dark: #0e0e0e;
+      --light: #ffffff;
+      --accent: #1e1e1e;
     }
 
     * {
@@ -26,8 +24,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      color: var(--text-dark);
-      background-color: var(--background);
+      color: var(--light);
+      background-color: var(--dark);
       line-height: 1.6;
     }
 
@@ -39,27 +37,13 @@
     header {
       position: fixed;
       width: 100%;
-      background: linear-gradient(135deg, var(--accent), #004080);
-      color: var(--background);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--background);
-      display: flex;
-      align-items: center;
-    }
-
-    .logo i {
-      margin-right: 0.5rem;
-      color: var(--background);
     }
 
     nav a {
@@ -69,124 +53,227 @@
     }
 
     nav a:hover {
-      color: var(--card-bg);
+      color: var(--primary);
     }
 
     .hero {
-      background: linear-gradient(135deg, var(--primary), #004080);
-      color: var(--background);
-      padding: 5rem 2rem;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      min-height: 100vh;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--primary), #0f0f0f);
     }
 
     .hero h1 {
       font-size: 3rem;
-      font-weight: 700;
       margin-bottom: 1rem;
+      color: var(--light);
     }
 
     .hero p {
       font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto 2rem;
+      margin-bottom: 2rem;
+      color: #ccc;
     }
 
-    .hero button {
-      background: var(--background);
-      color: var(--primary);
-      border: 2px solid var(--primary);
-      padding: 0.75rem 1.5rem;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
+    .cta-button {
+      background: var(--light);
+      color: var(--dark);
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .hero button:hover {
-      background: var(--primary);
-      color: var(--background);
+    .cta-button:hover {
+      background: #1a1a1a;
     }
 
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .section h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .section p {
-      font-size: 1rem;
-      line-height: 1.6;
+    .features, .services, .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
     }
 
     .card {
-      background: var(--card-bg);
+      background: var(--accent);
+      border-radius: 10px;
       padding: 2rem;
-      margin-bottom: 2rem;
-      border-radius: 8px;
-      box-shadow: var(--card-shadow);
+      flex: 1 1 280px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .testimonial {
+      background: var(--accent);
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial cite {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .contact-form {
+      background: var(--accent);
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 5px;
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    .contact-form button {
+      background: var(--primary);
+      color: var(--dark);
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #00c8a1;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      color: var(--text-dark);
+      color: #aaa;
       font-size: 0.9rem;
-      background: var(--accent);
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
+      .features, .services, .testimonials {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">
-      <i class="fas fa-shield-alt"></i> AuditInfra
-    </div>
+    <div class="logo">InfraAudit</div>
     <nav>
       <a href="#features">Features</a>
-      <a href="#chatbot">Chatbot</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Revolutionizing Audit Workflows</h1>
-    <p>Our AI-powered chatbot streamlines audits, reduces manual work, and ensures compliance — all with a confident, bold design.</p>
-    <button>Get Started</button>
+  <section class="hero" id="hero">
+    <h1>Automate Your Infrastructure Audits</h1>
+    <p>Streamline compliance, reduce risks, and boost efficiency with our intelligent audit automation platform.</p>
+    <button class="cta-button" onclick="window.location.href='#contact'">Get Started</button>
   </section>
 
-  <section class="section" id="features">
+  <section id="features">
     <h2>Key Features</h2>
-    <div class="card">
-      <p>Our chatbot interacts seamlessly with auditors, handling queries about system configurations, access logs, and compliance checks. This reduces the burden on your IT team, allowing them to focus on strategic initiatives rather than manual audit tasks.</p>
+    <div class="features">
+      <div class="card">
+        <i class="fas fa-robot"></i>
+        <h3>AI-Powered Automation</h3>
+        <p>Smart algorithms that automatically detect vulnerabilities and compliance gaps across your infrastructure.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Real-Time Analytics</h3>
+        <p>Get instant insights and visualizations of your audit results with customizable dashboards.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Security First</h3>
+        <p>Advanced encryption and role-based access control to protect your sensitive audit data.</p>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="chatbot">
-    <h2>AI-Powered Chatbot</h2>
-    <div class="card">
-      <p>Our chatbot is designed to interact seamlessly with auditors, handling queries about system configurations, access logs, and compliance checks. This reduces the burden on your IT team, allowing them to focus on strategic initiatives rather than manual audit tasks. Perfect for BFSI organizations who need to balance audit rigor with operational agility.</p>
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="card">
+        <i class="fas fa-tools"></i>
+        <h3>Infrastructure Auditing</h3>
+        <p>Comprehensive audits of your cloud, on-premises, and hybrid infrastructure environments.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-cogs"></i>
+        <h3>Continuous Monitoring</h3>
+        <p>Real-time monitoring of your systems to detect and resolve issues before they escalate.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-bolt"></i>
+        <h3>Compliance Automation</h3>
+        <p>Automate regulatory compliance checks with pre-built templates for GDPR, HIPAA, and more.</p>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <h2>Get in Touch</h2>
-    <div class="card">
-      <p>Have questions about our solutions? Reach out to our team at <a href="mailto:info@auditinfra.com">info@auditinfra.com</a> or call us at +1 (800) 123-4567.</p>
+  <section id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial">
+      <p>"InfraAudit transformed our audit process. We've reduced manual work by 70% and improved compliance accuracy."</p>
+      <cite>- TechCorp Inc.</cite>
     </div>
+    <div class="testimonial">
+      <p>"The real-time analytics dashboard has become an essential tool for our security team. Highly recommend!"</p>
+      <cite>- CloudSecure Solutions</cite>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-form">
+    <h2>Ready to Automate Your Audits?</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <footer>
-    &copy; 2023 AuditInfra. All rights reserved.
+    &copy; 2023 InfraAudit. All rights reserved.
   </footer>
 
   <script>
