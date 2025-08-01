@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
-      --primary: #00f5d4;
+      --primary: #2962ff; /* Vibrant Blue */
+      --accent: #e0f7fa; /* Light Blue */
       --dark: #0e0e0e;
       --light: #ffffff;
-      --accent: #1e1e1e;
+      --text-dark: #333333;
     }
 
     * {
@@ -24,8 +25,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      color: var(--light);
-      background-color: var(--dark);
+      color: var(--text-dark);
+      background-color: var(--accent);
       line-height: 1.6;
     }
 
@@ -37,243 +38,203 @@
     header {
       position: fixed;
       width: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 0.5rem;
+      color: var(--primary);
     }
 
     nav a {
       margin-left: 2rem;
-      font-weight: 600;
+      font-weight: 500;
       transition: color 0.3s;
     }
 
     nav a:hover {
-      color: var(--primary);
+      color: var(--dark);
     }
 
     .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(135deg, var(--primary), #e0f7fa);
+      color: var(--light);
+      padding: 5rem 2rem;
       text-align: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, var(--primary), #0f0f0f);
+      min-height: 100vh;
     }
 
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: var(--light);
     }
 
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
-      color: #ccc;
     }
 
-    .cta-button {
-      background: var(--light);
-      color: var(--dark);
-      padding: 0.8rem 1.5rem;
-      border: none;
+    .hero .btn {
+      background-color: var(--light);
+      color: var(--primary);
+      padding: 0.75rem 1.5rem;
       border-radius: 5px;
-      font-weight: 700;
-      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
       transition: background 0.3s;
     }
 
-    .cta-button:hover {
-      background: #1a1a1a;
+    .hero .btn:hover {
+      background-color: #cce5f0;
     }
 
-    section {
-      padding: 5rem 2rem;
+    .section {
+      padding: 4rem 2rem;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .features, .services, .testimonials {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: space-between;
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
     }
 
     .card {
-      background: var(--accent);
+      background-color: var(--light);
       border-radius: 10px;
       padding: 2rem;
-      flex: 1 1 280px;
-      transition: transform 0.3s;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-    }
-
-    .card i {
-      font-size: 2rem;
+    .card h3 {
+      color: var(--primary);
       margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .chatbot-section {
+      background-color: #f0f9ff;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+
+    .chatbot-section h2 {
       color: var(--primary);
     }
 
-    .testimonial {
-      background: var(--accent);
-      border-radius: 10px;
-      padding: 2rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .testimonial p {
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-
-    .testimonial cite {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    .contact-form {
-      background: var(--accent);
-      border-radius: 10px;
-      padding: 2rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 5px;
-      background: var(--light);
-      color: var(--dark);
-    }
-
-    .contact-form button {
-      background: var(--primary);
-      color: var(--dark);
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .contact-form button:hover {
-      background: #00c8a1;
+    .chatbot-section p {
+      font-size: 1.1rem;
+      color: var(--text-dark);
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      color: #aaa;
+      color: var(--text-dark);
       font-size: 0.9rem;
+      border-top: 1px solid #ccc;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
-      .features, .services, .testimonials {
-        flex-direction: column;
-        align-items: center;
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo">InfraAudit</div>
+    <div class="logo">
+      <i class="fas fa-shield-alt"></i> AuditInfra
+    </div>
     <nav>
       <a href="#features">Features</a>
       <a href="#services">Services</a>
-      <a href="#testimonials">Testimonials</a>
+      <a href="#chatbot">Chatbot</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero" id="hero">
-    <h1>Automate Your Infrastructure Audits</h1>
-    <p>Streamline compliance, reduce risks, and boost efficiency with our intelligent audit automation platform.</p>
-    <button class="cta-button" onclick="window.location.href='#contact'">Get Started</button>
+  <section class="hero">
+    <h1>Revolutionize Your Audits with AuditInfra</h1>
+    <p>Automate, streamline, and free up your IT team with our Virtual Sysadmin Chatbot. Perfect for BFSI and beyond.</p>
+    <a href="#chatbot" class="btn">Talk to Our Chatbot</a>
   </section>
 
-  <section id="features">
-    <h2>Key Features</h2>
-    <div class="features">
-      <div class="card">
-        <i class="fas fa-robot"></i>
-        <h3>AI-Powered Automation</h3>
-        <p>Smart algorithms that automatically detect vulnerabilities and compliance gaps across your infrastructure.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-chart-line"></i>
-        <h3>Real-Time Analytics</h3>
-        <p>Get instant insights and visualizations of your audit results with customizable dashboards.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-shield-alt"></i>
-        <h3>Security First</h3>
-        <p>Advanced encryption and role-based access control to protect your sensitive audit data.</p>
-      </div>
+  <section class="section" id="features">
+    <h2>Our Key Features</h2>
+    <div class="card">
+      <h3>Virtual Sysadmin Chatbot</h3>
+      <p>Our AI-powered chatbot interacts with internal and external auditors, reducing manual tasks and freeing up your IT team for innovation.</p>
+    </div>
+    <div class="card">
+      <h3>Real-Time Audit Support</h3>
+      <p>Get instant responses to audit queries, ensuring compliance and reducing delays in your BFSI operations.</p>
+    </div>
+    <div class="card">
+      <h3>Customizable Workflows</h3>
+      <p>Tailor audit processes to your organization’s needs with intuitive tools and automation.</p>
     </div>
   </section>
 
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="card">
-        <i class="fas fa-tools"></i>
-        <h3>Infrastructure Auditing</h3>
-        <p>Comprehensive audits of your cloud, on-premises, and hybrid infrastructure environments.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-cogs"></i>
-        <h3>Continuous Monitoring</h3>
-        <p>Real-time monitoring of your systems to detect and resolve issues before they escalate.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-bolt"></i>
-        <h3>Compliance Automation</h3>
-        <p>Automate regulatory compliance checks with pre-built templates for GDPR, HIPAA, and more.</p>
-      </div>
+  <section class="section" id="services">
+    <h2>Services We Offer</h2>
+    <div class="card">
+      <h3>Audit Automation</h3>
+      <p>Automate repetitive audit tasks to save time and reduce human error.</p>
+    </div>
+    <div class="card">
+      <h3>Compliance Management</h3>
+      <p>Stay ahead of regulatory requirements with real-time compliance checks and reporting.</p>
+    </div>
+    <div class="card">
+      <h3>IT Team Support</h3>
+      <p>Free up your IT department to focus on innovation with our hands-free audit solutions.</p>
     </div>
   </section>
 
-  <section id="testimonials">
-    <h2>What Our Clients Say</h2>
-    <div class="testimonial">
-      <p>"InfraAudit transformed our audit process. We've reduced manual work by 70% and improved compliance accuracy."</p>
-      <cite>- TechCorp Inc.</cite>
-    </div>
-    <div class="testimonial">
-      <p>"The real-time analytics dashboard has become an essential tool for our security team. Highly recommend!"</p>
-      <cite>- CloudSecure Solutions</cite>
-    </div>
+  <section class="chatbot-section" id="chatbot">
+    <h2>Meet Your Virtual Sysadmin Chatbot</h2>
+    <p>
+      Our chatbot is designed to interact seamlessly with auditors, handling queries about system configurations, access logs, and compliance checks. This reduces the burden on your IT team, allowing them to focus on strategic initiatives rather than manual audit tasks. Perfect for BFSI organizations who need to balance audit rigor with operational agility.
+    </p>
   </section>
 
-  <section id="contact" class="contact-form">
-    <h2>Ready to Automate Your Audits?</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <section class="section" id="contact">
+    <h2>Get in Touch</h2>
+    <div class="card">
+      <p>Have questions about our solutions? Reach out to our team at <a href="mailto:info@auditinfra.com">info@auditinfra.com</a> or call us at +1 (800) 123-4567.</p>
+    </div>
   </section>
 
   <footer>
-    &copy; 2023 InfraAudit. All rights reserved.
+    &copy; 2023 AuditInfra. All rights reserved.
   </footer>
 
   <script>
